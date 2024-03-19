@@ -1,0 +1,136 @@
+openapi: 3.1.0
+info:
+  title: Java API Bobs Bargain
+  description: User Management API for Bobs Bargain
+  version: 0.1.0
+  contact:
+    name: Bobs Bargain
+
+servers:
+  - url: http://localhost:4000
+
+tags:
+  - name: users
+
+paths:
+  /users:
+    post:
+      tags:
+        - users
+      summary: Create a user
+      description: Create a new user account.
+      operationId: createUser
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/User'
+      responses:
+        '201':
+          description: Successfully created a new user
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+    get:
+      tags:
+        - users
+      summary: Get all users
+      description: Get a list of all users.
+      operationId: getUsers
+      responses:
+        '200':
+          description: Get a list of all users
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/User'
+
+  /users/{id}:
+    put:
+      tags:
+        - users
+      summary: Update a user
+      description: Update an existing user.
+      operationId: updateUser
+      parameters:
+        - name: id
+          in: path
+          description: The ID of the user to update
+          required: true
+          schema:
+            type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/User'
+      responses:
+        '200':
+          description: Successfully updated the specified user
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+    delete:
+      tags:
+        - users
+      summary: Delete a user
+      description: Delete an existing user.
+      operationId: deleteUser
+      parameters:
+        - name: id
+          in: path
+          description: The ID of the user to delete
+          required: true
+          schema:
+            type: integer
+      responses:
+        '204':
+          description: Successfully deleted the specified user
+
+components:
+  schemas:
+    User:
+      type: object
+      required:
+        - username
+        - fullName
+        - email
+        - user_id
+        - password
+      properties:
+        username:
+          type: string
+          example: "john_doe"
+        fullName:
+          type: string
+          example: "John Doe"
+        email:
+          type: string
+          example: "john@example.com"
+        user_id:
+          type: integer
+          example: 123
+        password:
+          type: string
+          example: "mypassword"
+        cart:
+          type: array
+          items:
+            type: string
+          example: []
+        wishlist:
+          type: array
+          items:
+            type: string
+          example: []
+        orderHistory:
+          type: array
+          items:
+            type: string
+          example: []
