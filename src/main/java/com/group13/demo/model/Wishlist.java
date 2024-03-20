@@ -14,6 +14,11 @@ public class Wishlist {
     @Column(nullable = false)
     private int userId;
 
-    @OneToMany(mappedBy = "wishlist", cascade = CascadeType.ALL)
+    @ManyToMany
+    @JoinTable(
+            name = "wishlist_product",
+            joinColumns = @JoinColumn(name = "wishlist_id"),
+            inverseJoinColumns = @JoinColumn(name = "product_id")
+    )
     private List<Product> products;
 }

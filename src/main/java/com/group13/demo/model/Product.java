@@ -2,6 +2,8 @@ package com.group13.demo.model;
 import lombok.Data;
 import jakarta.persistence.*;
 
+import java.util.List;
+
 @Data
 @Entity
 @Table(name = "products")
@@ -10,17 +12,14 @@ public class Product {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int product_id;
 
-    @ManyToOne
-    @JoinColumn(name = "wishlist_id")
-    private Wishlist wishlist;
+    @ManyToMany(mappedBy = "products")
+    private List<Wishlist> wishlists;
 
-    @ManyToOne
-    @JoinColumn(name = "order_id")
-    private Order order;
+    @ManyToMany(mappedBy = "products")
+    private List<Cart> carts;
 
-    @ManyToOne
-    @JoinColumn(name = "cart_id")
-    private Cart cart;
+    @ManyToMany(mappedBy = "products")
+    private List<Order> orders;
 
     @Column(nullable = false)
     private String name;

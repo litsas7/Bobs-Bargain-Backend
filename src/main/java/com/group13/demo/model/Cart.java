@@ -14,7 +14,12 @@ public class Cart {
     @Column(nullable = false)
     private int userId;
 
-    @OneToMany(mappedBy = "cart", cascade = CascadeType.ALL)
+    @ManyToMany
+    @JoinTable(
+            name = "cart_product",
+            joinColumns = @JoinColumn(name = "cart_id"),
+            inverseJoinColumns = @JoinColumn(name = "product_id")
+    )
     private List<Product> products;
 
     @Column(nullable = false)
