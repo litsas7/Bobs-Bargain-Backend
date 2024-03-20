@@ -1,7 +1,7 @@
 openapi: 3.1.0
 info:
   title: Java API Bobs Bargain
-  description: User Management API for Bobs Bargain
+  description: API documentation for Bobs Bargain
   version: 0.1.0
   contact:
     name: Bobs Bargain
@@ -10,56 +10,60 @@ servers:
   - url: http://localhost:4000
 
 tags:
-  - name: users
+  - name: admins
+  - name: products
+  - name: orders
+  - name: carts
+  - name: wishlists
 
 paths:
-  /users:
+  /admins:
     post:
       tags:
-        - users
-      summary: Create a user
-      description: Create a new user account.
-      operationId: createUser
+        - admins
+      summary: Create an admin
+      description: Create a new admin account.
+      operationId: createAdmin
       requestBody:
         required: true
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/User'
+              $ref: '#/components/schemas/Admin'
       responses:
         '201':
-          description: Successfully created a new user
+          description: Successfully created a new admin
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/User'
+                $ref: '#/components/schemas/Admin'
     get:
       tags:
-        - users
-      summary: Get all users
-      description: Get a list of all users.
-      operationId: getUsers
+        - admins
+      summary: Get all admins
+      description: Get a list of all admins.
+      operationId: getAdmins
       responses:
         '200':
-          description: Get a list of all users
+          description: Get a list of all admins
           content:
             application/json:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/User'
+                  $ref: '#/components/schemas/Admin'
 
-  /users/{id}:
+  /admins/{id}:
     put:
       tags:
-        - users
-      summary: Update a user
-      description: Update an existing user.
-      operationId: updateUser
+        - admins
+      summary: Update an admin
+      description: Update an existing admin.
+      operationId: updateAdmin
       parameters:
         - name: id
           in: path
-          description: The ID of the user to update
+          description: The ID of the admin to update
           required: true
           schema:
             type: integer
@@ -68,40 +72,359 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/User'
+              $ref: '#/components/schemas/Admin'
       responses:
         '200':
-          description: Successfully updated the specified user
+          description: Successfully updated the specified admin
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/User'
+                $ref: '#/components/schemas/Admin'
     delete:
       tags:
-        - users
-      summary: Delete a user
-      description: Delete an existing user.
-      operationId: deleteUser
+        - admins
+      summary: Delete an admin
+      description: Delete an existing admin.
+      operationId: deleteAdmin
       parameters:
         - name: id
           in: path
-          description: The ID of the user to delete
+          description: The ID of the admin to delete
           required: true
           schema:
             type: integer
       responses:
         '204':
-          description: Successfully deleted the specified user
+          description: Successfully deleted the specified admin
+
+  /products:
+    post:
+      tags:
+        - products
+      summary: Create a product
+      description: Create a new product.
+      operationId: createProduct
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Product'
+      responses:
+        '201':
+          description: Successfully created a new product
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Product'
+    get:
+      tags:
+        - products
+      summary: Get all products
+      description: Get a list of all products.
+      operationId: getProducts
+      responses:
+        '200':
+          description: Get a list of all products
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Product'
+
+  /products/{id}:
+    put:
+      tags:
+        - products
+      summary: Update a product
+      description: Update an existing product.
+      operationId: updateProduct
+      parameters:
+        - name: id
+          in: path
+          description: The ID of the product to update
+          required: true
+          schema:
+            type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Product'
+      responses:
+        '200':
+          description: Successfully updated the specified product
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Product'
+    delete:
+      tags:
+        - products
+      summary: Delete a product
+      description: Delete an existing product.
+      operationId: deleteProduct
+      parameters:
+        - name: id
+          in: path
+          description: The ID of the product to delete
+          required: true
+          schema:
+            type: integer
+      responses:
+        '204':
+          description: Successfully deleted the specified product
+
+  /orders:
+    post:
+      tags:
+        - orders
+      summary: Create an order
+      description: Create a new order.
+      operationId: createOrder
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Order'
+      responses:
+        '201':
+          description: Successfully created a new order
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Order'
+    get:
+      tags:
+        - orders
+      summary: Get all orders
+      description: Get a list of all orders.
+      operationId: getOrders
+      responses:
+        '200':
+          description: Get a list of all orders
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Order'
+
+  /orders/{id}:
+    put:
+      tags:
+        - orders
+      summary: Update an order
+      description: Update an existing order.
+      operationId: updateOrder
+      parameters:
+        - name: id
+          in: path
+          description: The ID of the order to update
+          required: true
+          schema:
+            type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Order'
+      responses:
+        '200':
+          description: Successfully updated the specified order
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Order'
+    delete:
+      tags:
+        - orders
+      summary: Delete an order
+      description: Delete an existing order.
+      operationId: deleteOrder
+      parameters:
+        - name: id
+          in: path
+          description: The ID of the order to delete
+          required: true
+          schema:
+            type: integer
+      responses:
+        '204':
+          description: Successfully deleted the specified order
+
+  /carts:
+    post:
+      tags:
+        - carts
+      summary: Create a cart
+      description: Create a new cart.
+      operationId: createCart
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Cart'
+      responses:
+        '201':
+          description: Successfully created a new cart
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Cart'
+    get:
+      tags:
+        - carts
+      summary: Get all carts
+      description: Get a list of all carts.
+      operationId: getCarts
+      responses:
+        '200':
+          description: Get a list of all carts
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Cart'
+
+  /carts/{id}:
+    put:
+      tags:
+        - carts
+      summary: Update a cart
+      description: Update an existing cart.
+      operationId: updateCart
+      parameters:
+        - name: id
+          in: path
+          description: The ID of the cart to update
+          required: true
+          schema:
+            type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Cart'
+      responses:
+        '200':
+          description: Successfully updated the specified cart
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Cart'
+    delete:
+      tags:
+        - carts
+      summary: Delete a cart
+      description: Delete an existing cart.
+      operationId: deleteCart
+      parameters:
+        - name: id
+          in: path
+          description: The ID of the cart to delete
+          required: true
+          schema:
+            type: integer
+      responses:
+        '204':
+          description: Successfully deleted the specified cart
+
+  /wishlists:
+    post:
+      tags:
+        - wishlists
+      summary: Create a wishlist
+      description: Create a new wishlist.
+      operationId: createWishlist
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Wishlist'
+      responses:
+        '201':
+          description: Successfully created a new wishlist
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Wishlist'
+    get:
+      tags:
+        - wishlists
+      summary: Get all wishlists
+      description: Get a list of all wishlists.
+      operationId: getWishlists
+      responses:
+        '200':
+          description: Get a list of all wishlists
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Wishlist'
+
+  /wishlists/{id}:
+    put:
+      tags:
+        - wishlists
+      summary: Update a wishlist
+      description: Update an existing wishlist.
+      operationId: updateWishlist
+      parameters:
+        - name: id
+          in: path
+          description: The ID of the wishlist to update
+          required: true
+          schema:
+            type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Wishlist'
+      responses:
+        '200':
+          description: Successfully updated the specified wishlist
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Wishlist'
+    delete:
+      tags:
+        - wishlists
+      summary: Delete a wishlist
+      description: Delete an existing wishlist.
+      operationId: deleteWishlist
+      parameters:
+        - name: id
+          in: path
+          description: The ID of the wishlist to delete
+          required: true
+          schema:
+            type: integer
+      responses:
+        '204':
+          description: Successfully deleted the specified wishlist
 
 components:
   schemas:
-    User:
+    Admin:
       type: object
       required:
         - username
         - fullName
         - email
-        - user_id
         - password
       properties:
         username:
@@ -113,24 +436,100 @@ components:
         email:
           type: string
           example: "john@example.com"
-        user_id:
+        admin_id:
           type: integer
           example: 123
         password:
           type: string
           example: "mypassword"
-        cart:
+
+    Product:
+      type: object
+      required:
+        - name
+        - price
+        - stock
+      properties:
+        product_id:
+          type: integer
+        name:
+          type: string
+          example: "Widget"
+        description:
+          type: string
+          example: "A high-quality widget"
+        price:
+          type: number
+          format: double
+          example: 10.99
+        category:
+          type: string
+          example: "Electronics"
+        stock:
+          type: integer
+          example: 100
+
+    Order:
+      type: object
+      required:
+        - user_id
+        - products
+        - total
+      properties:
+        order_id:
+          type: integer
+        user_id:
+          type: integer
+          example: 123
+        products:
           type: array
           items:
-            type: string
+            $ref: '#/components/schemas/Product'
           example: []
-        wishlist:
+        total:
+          type: number
+          format: double
+          example: 50.0
+        date:
+          type: string
+          format: date-time
+          example: "2024-03-21T10:00:00Z"
+
+    Cart:
+      type: object
+      required:
+        - user_id
+        - products
+        - total
+      properties:
+        cart_id:
+          type: integer
+        user_id:
+          type: integer
+          example: 123
+        products:
           type: array
           items:
-            type: string
+            $ref: '#/components/schemas/Product'
           example: []
-        orderHistory:
+        total:
+          type: number
+          format: double
+          example: 50.0
+
+    Wishlist:
+      type: object
+      required:
+        - user_id
+        - products
+      properties:
+        wishlist_id:
+          type: integer
+        user_id:
+          type: integer
+          example: 123
+        products:
           type: array
           items:
-            type: string
+            $ref: '#/components/schemas/Product'
           example: []
