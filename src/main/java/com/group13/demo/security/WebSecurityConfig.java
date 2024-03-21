@@ -59,7 +59,8 @@ public class WebSecurityConfig {
                 .sessionManagement((session) -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authorizeHttpRequests((requests) -> requests
                         .requestMatchers("/auth/**").permitAll()
-                        .requestMatchers("/books", "/books/**").authenticated()
+                        .requestMatchers("/users", "/users/**").authenticated()
+                        .requestMatchers("/products","/products/{product_id}").hasAnyAuthority("ROLE_ADMIN ")
                 );
         http.authenticationProvider(authenticationProvider());
         http.addFilterBefore(authenticationJwtTokenFilter(),
